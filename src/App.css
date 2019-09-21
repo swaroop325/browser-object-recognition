@@ -1,0 +1,11 @@
+.app-position {
+  position: fixed;
+  margin: auto;
+}
+
+/* .app-position {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+
