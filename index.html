@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <title>video-object-detection</title>
+        <style>
+            body {
+                background: black;
+                margin: 0;
+                padding: 0;
+                text-align: center;
+                font-family: Arial;
+            }
+            video {
+                position: block;
+                height: 100%;
+                max-width: 100%;
+            }
+            .object-box {
+                position: absolute;
+            }
+            .object-box > p {
+                position: absolute;
+                left: 1px;
+                top: 0px;
+                margin: 0;
+            }
+            #loading {
+                font-size: 20px;
+                position: absolute;
+                left: 15px;
+                top: 5px;
+                color: rgb(135, 197, 169);
+            }
+        </style>
+    </head>
+    <body>
+        <video id="input"></video>
+        <p id="loading">Model loading. Please wait a moment...</p>
+    </body>
+    <script src="dist/video-object-detection.js"></script>
+    <script>
+        var getUserMedia = navigator.getUserMedia || 
+            navigator.mozGetUserMedia || 
+            navigator.webkitGetUserMedia;
+        
+        if (getUserMedia) getUserMedia = getUserMedia.bind(navigator);
+
+        const inputVideo = document.querySelector('#input')
+        getUserMedia({ video: true, audio: false}, (stream) => {
+            inputVideo.srcObject = stream
+            VideoObjectDetection({inputVideo})
+            inputVideo.play()
+        }, (err) => { throw err })
+
+        /*
+        window.onclick = () => {
+            //inputVideo.srcObject = stream
+            inputVideo.src = 'BigBuckBunny.mp4'
+            VideoObjectDetection({inputVideo})
+            inputVideo.play()
+        }
+        */
+    </script>
+</html>
